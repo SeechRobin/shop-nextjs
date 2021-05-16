@@ -9,12 +9,12 @@ export const SearchSEO: React.FC<Props> = ({ host }) => {
   return (
     <>
       <NextSeo
-        title={"Depop - buy, sell, discover unique fashion"}
+        title={"Ecost - Low price in electronics, clothes, video games...."}
         description={
-          "Designer. Preloved. Vintage. Streetwear. Sneakers. Whatever your style. Find it on Depop."
+          "digital camera, LCD TV, books, DVD, low prices, video games, pc games, software, electronics, home, garden, video"
         }
         canonical={`https://${host}/search`}
-        twitter={{ cardType: "summary", site: "@depop", handle: "@depop" }}
+        twitter={{ cardType: "summary", site: "@ecost", handle: "@ecost" }}
       />
     </>
   )

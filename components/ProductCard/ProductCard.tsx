@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Image, Spacer, Stack, Text } from "@chakra-ui/react"
+import { Box, Button, Image, Spacer, Stack, Text } from "@chakra-ui/react"
 import { Heart } from "../index"
 import { FavouriteProduct } from "../../types/index"
 import { dataTestIdPrefix } from "../utils/dataTestIdPrefix"
@@ -9,34 +9,25 @@ export const testIdPrefix = dataTestIdPrefix("ProductCard")
 export const dataTestIds = {
   container: testIdPrefix("container"),
   image: testIdPrefix("image"),
-  soldOut: testIdPrefix("soldOut"),
   heart: testIdPrefix("heart"),
-  name: testIdPrefix("name"),
-  brand: testIdPrefix("brand"),
-  size: testIdPrefix("size"),
+  title: testIdPrefix("title"),
   price: testIdPrefix("price"),
 }
 
 export type Props = {
   id: string
-  img: string
-  name: string
-  brand: string
-  size: string
+  image: string
+  title: string
   price: string
-  sold: boolean
   likedProducts: FavouriteProduct[]
   setLikedProducts: (likedProducts: FavouriteProduct[]) => void
 }
 
 export const ProductCard: React.FC<Props> = ({
   id,
-  img,
-  name,
-  brand,
-  size,
+  image,
+  title,
   price,
-  sold,
   likedProducts,
   setLikedProducts,
 }) => {
@@ -48,14 +39,14 @@ export const ProductCard: React.FC<Props> = ({
     color: "rgb(38, 38, 38)",
   }
 
-  const handleHeartClick = (id: string, name: string): void => {
+  const handleHeartClick = (id: string, title: string): void => {
     // simulating this with state but this will potentially be hanlded by an api to persit the change
     if (islikedProduct) {
       const removedLikedProducts = likedProducts.filter((product) => product.id !== id)
       setLikedProducts(removedLikedProducts)
       setIsLikedProduct(false)
     } else {
-      const addedLikedProducts = [...likedProducts, { id: id, name: name }]
+      const addedLikedProducts = [...likedProducts, { id: id, title: title }]
       console.log(addedLikedProducts)
       setLikedProducts(addedLikedProducts)
       setIsLikedProduct(true)
@@ -77,25 +68,10 @@ export const ProductCard: React.FC<Props> = ({
           width="17.5rem"
           height="17.5rem"
           objectFit="fill"
-          src={img}
-          opacity={sold ? 0.7 : 1}
-          alt={name}
+          src={image}
+          alt={title}
           fallback={<Box backgroundColor="gray.100" width="17.5rem" height="17.5rem"></Box>}
         />
-        {sold && (
-          <Text
-            data-testid={dataTestIds.soldOut}
-            position="absolute"
-            color="rgb(255, 35, 0)"
-            fontWeight="900"
-            fontSize="1rem"
-            top="130px"
-            left="130px"
-            transform="translate(-50%, -50%)"
-          >
-            Sold
-          </Text>
-        )}
         <Box
           data-testid={dataTestIds.heart}
           top="4px"
@@ -103,7 +79,7 @@ export const ProductCard: React.FC<Props> = ({
           position="absolute"
           height="2rem"
           width="2rem"
-          onClick={() => handleHeartClick(id, name)}
+          onClick={() => handleHeartClick(id, title)}
         >
           <Heart fill={islikedProduct} />
         </Box>
@@ -111,45 +87,36 @@ export const ProductCard: React.FC<Props> = ({
 
       <Box width="17.5rem">
         <Text
-          data-testid={dataTestIds.brand}
-          minHeight="1.8rem"
-          width="18rem"
-          fontWeight="900"
-          fontSize="1rem"
-          {...textTypography}
-        >
-          {brand}
-        </Text>
-        <Text
-          data-testid={dataTestIds.name}
+          data-testid={dataTestIds.title}
           minHeight="0.8rem"
           width="18rem"
           fontSize="0.8rem"
-          lineHeight="0.3"
+          lineHeight="1.5"
           {...textTypography}
         >
-          {name}
+          {title}
         </Text>
         <Box>
-          <Text
-            data-testid={dataTestIds.size}
-            minHeight="0.8rem"
-            width="18rem"
-            fontSize="0.8rem"
-            lineHeight="0.3"
-            {...textTypography}
-          >
-            {size.replace("size", "").trim()}
-          </Text>
           <Text
             data-testid={dataTestIds.price}
             width="18rem"
             fontWeight="900"
             fontSize="0.9rem"
             {...textTypography}
+            paddingBottom="10px"
           >
-            £{price?.split(".")[0]}
+            £{price}
           </Text>
+          <Button
+            width="100%"
+            backgroundColor="black"
+            textColor="#fff"
+            borderRadius="0"
+            textTransform="uppercase"
+            _hover={{ backgroundColor: "white", textColor: "black", border: "1px solid black" }}
+          >
+            Add to Bag
+          </Button>
         </Box>
         <Spacer />
       </Box>

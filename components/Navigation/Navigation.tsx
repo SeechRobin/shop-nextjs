@@ -1,5 +1,5 @@
 import React from "react"
-import { Flex, Box, Spacer } from "@chakra-ui/react"
+import { Flex, Box, Spacer, Input, useBreakpointValue } from "@chakra-ui/react"
 import { Logo } from "../index"
 import { Heart } from "../index"
 import { Favourites } from "../Favourites/Favourites"
@@ -18,6 +18,7 @@ export type Props = {
 }
 
 export const Navigation: React.FC<Props> = ({ likedProducts }) => {
+  const isMobile = useBreakpointValue([true, true, false])
   return (
     <>
       <Flex
@@ -26,6 +27,7 @@ export const Navigation: React.FC<Props> = ({ likedProducts }) => {
         paddingRight="25px"
         marginTop="25px"
         borderBottom="0.0625rem solid rgb(238, 238, 238)"
+        justifyContent="space-around"
       >
         <Box
           data-testid={dataTestIds.brandLogo}
@@ -35,7 +37,16 @@ export const Navigation: React.FC<Props> = ({ likedProducts }) => {
         >
           <Logo />
         </Box>
-        <Spacer />
+        {isMobile ? (
+          <Spacer />
+        ) : (
+          <Input
+            width={["0", "0", "500px", "700px"]}
+            placeholder=" Seatch TVs, books, low prices, video games..."
+            size="md"
+            borderRadius="0"
+          />
+        )}
         <Box data-testid={dataTestIds.likes}>
           <Favourites likedProducts={likedProducts} />
         </Box>

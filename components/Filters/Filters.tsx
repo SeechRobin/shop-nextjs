@@ -41,23 +41,6 @@ export const Filters: React.FC<Props> = ({
       {...textTypography}
     >
       <Text data-testid={dataTestIds.results}> {filteredProductList?.length} Result(s)</Text>
-      <Stack data-testid={dataTestIds.toggleContainer} direction="row">
-        <Text> Hide Sold Out</Text>
-        <Switch
-          data-testid={dataTestIds.toggle}
-          isChecked={isChecked}
-          aria-label="Toggle Sold Out Items"
-          onChange={(): void => {
-            setIsChecked(!isChecked)
-            if (!isChecked) {
-              setFilteredProductList(productList?.filter((product) => !product.sold))
-            } else {
-              setFilteredProductList(productList)
-            }
-          }}
-          colorScheme="red"
-        />
-      </Stack>
     </Flex>
   )
 }

@@ -5,12 +5,9 @@ import { dataTestIds as heartTestIds } from "../Icons/Heart"
 
 const props: Props = {
   id: "1",
-  name: "Arch Blick",
-  img: "https://placeimg.com/640/360/any",
-  sold: true,
+  title: "Arch Blick",
+  image: "https://placeimg.com/640/360/any",
   price: "584.00",
-  brand: "Practical Steel Cheese",
-  size: "M",
   likedProducts: [],
   setLikedProducts: jest.fn(),
 }
@@ -20,30 +17,14 @@ it("should render the product card container", async () => {
   expect(result.getByTestId(dataTestIds.container)).toBeInTheDocument()
 })
 
+it("should render the product card title", async () => {
+  const result = render(<ProductCard {...props} />)
+  expect(result.getByTestId(dataTestIds.container)).toHaveTextContent("Arch Blick")
+})
+
 it("should render the image", async () => {
   const result = render(<ProductCard {...props} />)
   expect(result.getByTestId(dataTestIds.image)).toBeInTheDocument()
-})
-
-it("should render the sold out message", async () => {
-  const result = render(<ProductCard {...props} />)
-  expect(result.getByTestId(dataTestIds.soldOut)).toBeInTheDocument()
-})
-
-it("should not render the sold out message", async () => {
-  const notSoldOut = { ...props, sold: false }
-  const result = render(<ProductCard {...notSoldOut} />)
-  expect(result.queryByTestId(dataTestIds.soldOut)).toBeNull()
-})
-
-it("should render the brand", async () => {
-  const result = render(<ProductCard {...props} />)
-  expect(result.getByTestId(dataTestIds.brand)).toHaveTextContent("Practical Steel Cheese")
-})
-
-it("should render the size", async () => {
-  const result = render(<ProductCard {...props} />)
-  expect(result.getByTestId(dataTestIds.size)).toHaveTextContent("M")
 })
 
 it("should render the price", async () => {
