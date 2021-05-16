@@ -20,7 +20,7 @@ yarn dev
 
 Open [http://localhost:3000/search](http://localhost:3000/search) with your browser to see the result.
 
-The project is alo available on this [link](https://depop-plp.vercel.app/search)
+The project is alo available on this [link](https://shop-nextjs-psi.vercel.app/search)
 
 ## Improvements
 
