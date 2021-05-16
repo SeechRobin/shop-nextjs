@@ -28,3 +28,8 @@ The project is alo available on this [link](https://shop-nextjs-psi.vercel.app/s
 - Pixel perfect design, add a popup for adding to bag, liking peroducts
 - Get images with the correct size for each breakpoint (change aspect ratio on the image url)
 - Fall back image to render without the broken look
+
+## Perfomance 
+Nice lighthouse score
+
+<img width="567" alt="Screenshot 2021-05-16 at 14 32 32" src="https://user-images.githubusercontent.com/1080977/118399140-9a2b4580-b653-11eb-9fc6-8e6e420cfc0e.png">
