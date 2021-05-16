@@ -28,6 +28,7 @@ The project is alo available on this [link](https://shop-nextjs-psi.vercel.app/s
 - Pixel perfect design, add a popup for adding to bag, liking peroducts
 - Get images with the correct size for each breakpoint (change aspect ratio on the image url)
 - Fall back image to render without the broken look
+- Make Add to Bag funtional 
 
 ## Perfomance 
 Nice lighthouse score
